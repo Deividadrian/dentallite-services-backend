@@ -1,16 +1,13 @@
-import { EntityRepository, Repository } from "typeorm";
-import { Dentistry } from '../entities/Dentistry'
+import { Dentistry } from './../entities/Dentistry';
+import { AppDataSource } from '@shared/infra/typeorm/data-source';
 
-@EntityRepository(Dentistry)
-export class DentistryRepository extends Repository<Dentistry> {
-
-  public async findByName(name: string){
+export const dentistryRepository = AppDataSource.getRepository(Dentistry).extend({
+  findByName(name: string){
     const dentistry = this.findOne({
       where: {
         name,
       }
     });
-
-    return dentistry;
+    return dentistry
   }
-}
+})

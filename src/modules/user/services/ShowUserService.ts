@@ -1,4 +1,4 @@
-import { userRepository } from '../repositories/UserRepository';
+import { userRepository } from '../infra/typeorm/repositories/UserRepository';
 
 interface IResquest {
   id: string;

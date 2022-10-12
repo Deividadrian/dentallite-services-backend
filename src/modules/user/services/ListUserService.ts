@@ -1,4 +1,4 @@
-import { userRepository } from "@modules/repositories/UserRepository";
+import { userRepository } from "@modules/user/infra/typeorm/repositories/UserRepository";
 
 class ListUserService {
   public async execute() {

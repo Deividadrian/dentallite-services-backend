@@ -1,4 +1,4 @@
-import { userRepository } from "@modules/repositories/UserRepository"
+import { userRepository } from "@modules/user/infra/typeorm/repositories/UserRepository"
 import AppError from "@shared/errors/AppErros"
 
 interface IRequest{

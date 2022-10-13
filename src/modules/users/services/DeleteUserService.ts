@@ -1,4 +1,4 @@
-import { userRepository } from "@modules/user/infra/typeorm/repositories/UserRepository";
+import { userRepository } from "@modules/users/infra/typeorm/repositories/UserRepository";
 import AppError from "@shared/errors/AppErros";
 
 

@@ -1,10 +1,10 @@
 class AppError {
-  public readonly message: string;
-  public readonly statuscode: number;
+  public readonly message: string; // Atributo de somente leitura
+  public readonly statusCode: number; // Atributo de somente leitura
 
-  constructor(message: string, statuscode = 400) {
+  constructor(message: string, statusCode = 400) { // statusCode já definido com o valor 400
     this.message = message;
-    this.statuscode = statuscode;
+    this.statusCode = statusCode;
   }
 }
 

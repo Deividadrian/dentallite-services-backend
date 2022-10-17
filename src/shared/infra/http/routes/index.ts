@@ -1,13 +1,10 @@
-import { Router } from "express";
-import usersRouter from "@modules/users/infra/http/routes/users.router";
+import { Router } from 'express';
 
-const router = Router();
 
-router.use('/users', usersRouter);
+const routes = Router();
 
-/*router.get('/', (request, response) => {
-  return response.json({ mensage: 'Resposta do back-end..'})
+routes.get('/', (request, response) => {
+    return response.json({ mensage: 'Hello Dev!' })
 });
-*/
 
-export default router;
+export default routes;

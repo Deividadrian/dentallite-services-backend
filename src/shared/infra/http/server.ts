@@ -1,11 +1,12 @@
-import 'reflect-metadata';
-import 'dotenv/config';
-import { app } from './app';
-import { AppDataSource } from '@shared/infra/typeorm/data-source';
+import express from 'express';
+import cors from 'cors';
+import routes from './routes';
 
-AppDataSource.initialize()
-.then(() => {
-  app.listen(process.env.PORT, () => {
-    console.log(`Server started on port ${process.env.PORT}!`)
-  })
-})
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+app.use(routes);
+
+app.listen(3333, () => {console.log('Server running on port 3000!')});

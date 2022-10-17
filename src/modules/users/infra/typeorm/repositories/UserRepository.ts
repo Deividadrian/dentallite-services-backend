@@ -1,7 +1,8 @@
 import { User } from '../entities/User';
 import { AppDataSource } from '@shared/infra/typeorm/data-source';
 
-export const userRepository = AppDataSource.getRepository(User).extend({
+export const userRepository = AppDataSource.getRepository(User)
+/*.extend({
   findByName(name: string){
     const user = this.findOne({
       where: {
@@ -18,5 +19,14 @@ export const userRepository = AppDataSource.getRepository(User).extend({
       }
     });
     return user
+  },
+
+  create(name: string) {
+    const user = this.create({
+      
+    })
+
+    return user
   }
-})
+
+})*/

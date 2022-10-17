@@ -5,10 +5,10 @@ interface IRequest{
   name: string
 }
 
-class CreateUserSrevice {
+class CreateUserService {
   public async execute({ name }: IRequest) {
     const userR = userRepository
-    const userExists = await userR.findByName(name)
+    const userExists = userR.create(name)
 
     if(userExists) {
       throw new AppError('There is already one user with this name')
@@ -21,4 +21,4 @@ class CreateUserSrevice {
   }
 }
 
-export default CreateUserSrevice
+export default CreateUserService

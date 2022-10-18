@@ -1,5 +1,5 @@
+import 'reflect-metadata';
 import { Router } from 'express';
-
 
 const routes = Router();
 

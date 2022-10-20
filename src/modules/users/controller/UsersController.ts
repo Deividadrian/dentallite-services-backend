@@ -22,7 +22,7 @@ export default class UsersController {
     return response.json(users);
   }
 
-  public async deleteUser(request: Request, response: Response): Promise<Response> {
+  public async delete(request: Request, response: Response): Promise<Response> {
     const {id} = request.params;
 
     const deleteUser = new DeleteUserService();

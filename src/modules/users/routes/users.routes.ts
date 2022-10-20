@@ -1,11 +1,29 @@
 import { Router } from 'express';
 import UsersController from '../controller/UsersController';
+import { celebrate, Joi, Segments } from 'celebrate';
 
 const usersRouter = Router();
 const usersController = new UsersController();
 
-usersRouter.post('/', usersController.create);
 usersRouter.get('/', usersController.index);
-usersRouter.delete('/:id', usersController.delete);
+
+usersRouter.post(
+  '/', 
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required()
+    }
+  }),
+  usersController.create);
+
+
+usersRouter.delete(
+  '/:id', 
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required()
+    }
+  }),
+  usersController.delete);
 
 export default usersRouter

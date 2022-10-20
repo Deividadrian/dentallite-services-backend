@@ -1,23 +1,28 @@
-import { userRepository } from "@modules/users/infra/typeorm/repositories/UserRepository"
+import User from "../typeorm/entities/User";
+import { UserRepository } from "../typeorm/repositories/UserRepository"
+import { getCustomRepository } from 'typeorm';
 import AppError from "@shared/errors/AppErros"
 
-interface IRequest{
+interface IRequest {
   name: string
 }
 
 class CreateUserService {
-  public async execute({ name }: IRequest) {
-    const userR = userRepository
-    const userExists = userR.create(name)
+  public async execute({name}: IRequest): Promise<User> {
+    const usersRepository = getCustomRepository(UserRepository);
+    const usersExists = await usersRepository.findByName(name);
 
-    if(userExists) {
-      throw new AppError('There is already one user with this name')
+    if(usersExists) {
+      throw new AppError("There is a user with this name");
     }
 
-    const user = userR.create({ name })
-    await userR.save(user)
+    const user = usersRepository.create({
+      name
+    });
 
-    return user
+    await usersRepository.save(user);
+
+    return user;
   }
 }
 

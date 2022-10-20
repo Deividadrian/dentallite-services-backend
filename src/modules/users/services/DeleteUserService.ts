@@ -1,6 +1,6 @@
-import { userRepository } from "@modules/users/infra/typeorm/repositories/UserRepository";
+import { getCustomRepository } from "typeorm";
+import { UserRepository } from "../typeorm/repositories/UserRepository";
 import AppError from "@shared/errors/AppErros";
-
 
 interface IResquest {
   id: string;
@@ -8,15 +8,15 @@ interface IResquest {
 
 class DeleteUserService {
   public async execute({id}: IResquest) {
-    const userR = userRepository
+    const usersRepository = getCustomRepository(UserRepository)
 
-    const user = await userR.findById(id)
+    const user = await usersRepository.findOne(id);
 
     if(!user) {
       throw new AppError('User not found.')
     }
 
-    await userRepository.remove(user)
+    await usersRepository.remove(user)
   }
 }
 
